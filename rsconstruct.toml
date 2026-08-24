@@ -1,59 +1,6 @@
 # rsconstruct configuration for this repository — shared defaults plus
 # repo-specific config (merged from the former rsconstruct.local.toml).
 
-# ─── analyzers ───────────────────────────────────────────────────────────────
-
-[analyzer.tera]
-
-[analyzer.markdown]
-
-[analyzer.python]
-
-# ─── templating ──────────────────────────────────────────────────────────────
-
-# Convention: tera configs are Lua (config/*.lua). dep_auto entries are
-# silently skipped where absent. Repos still on config/*.py keep a
-# dep_inputs override in their local overlay until converted.
-[processor.tera]
-dep_auto = [
-	"config/project.lua",
-	"config/personal.lua",
-	"config/version.lua",
-	"config/github.lua",
-	"config/python.lua",
-	"config/shared.lua",
-]
-
-# ─── markdown ────────────────────────────────────────────────────────────────
-
-[processor.rumdl]
-src_dirs = ["docs"]
-
-[processor.zspell]
-src_dirs = ["docs"]
-
-# ─── python ──────────────────────────────────────────────────────────────────
-
-[processor.ruff]
-src_dirs = ["config"]
-
-[processor.pylint]
-src_dirs = ["config"]
-
-[processor.mypy]
-src_dirs = ["config"]
-
-[processor.requirements]
-src_dirs = ["config"]
-
-# ─── shell ───────────────────────────────────────────────────────────────────
-
-[processor.shellcheck]
-src_dirs = ["docs", "config"]
-args = ["--severity=error", "--shell=bash"]
-
-# ─── lua ─────────────────────────────────────────────────────────────────────
-
 [processor.luacheck]
 src_dirs = ["config"]
 
@@ -61,12 +8,6 @@ src_dirs = ["config"]
 
 [processor.taplo]
 src_dirs = ["."]
-
-[processor.eslint]
-src_dirs = ["config"]
-args = ["-c", "config/eslint.config.js"]
-
-# ─── merged from rsconstruct.local.toml ─────────────────────────────────────
 
 # Render mermaid/**/*.mmd to docs/mermaid/**.{png,pdf,svg}. The outputs are
 # committed — this repo serves them as raw web assets — so they go under
