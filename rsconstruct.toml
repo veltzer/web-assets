@@ -1,8 +1,9 @@
 # rsconstruct configuration for this repository — shared defaults plus
 # repo-specific config (merged from the former rsconstruct.local.toml).
 
-[processor.luacheck]
-src_dirs = ["config"]
+# lint the shell scripts with shellcheck
+[processor.shellcheck]
+src_dirs = ["scripts"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
