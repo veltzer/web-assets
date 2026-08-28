@@ -1,6 +1,14 @@
 # rsconstruct configuration for this repository — shared defaults plus
 # repo-specific config (merged from the former rsconstruct.local.toml).
 
+# The mermaid processor's `command` override below points at the wrapper
+# script, so `tools install` checks for the script — not mmdc — and never
+# installs mermaid-cli on its own. Declare it here so `tools install-deps`
+# installs it globally in CI (locally node_modules/.bin/mmdc from
+# package.json wins; see the wrapper).
+[dependencies]
+npm = ["@mermaid-js/mermaid-cli"]
+
 # lint the shell scripts with shellcheck
 [processor.shellcheck]
 src_dirs = ["scripts"]
