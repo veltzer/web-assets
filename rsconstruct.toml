@@ -15,6 +15,9 @@ src_dirs = ["."]
 # uses, so any change to it rebuilds all diagrams.
 [processor.mermaid]
 src_dirs = ["mermaid"]
+# Wrapper around mmdc that pins the PDF /CreationDate & /ModDate Chromium
+# stamps into the output — without it every render is binary-different.
+command = "scripts/mmdc-deterministic.sh"
 output_dir = "docs/mermaid"
 formats = ["png", "pdf", "svg"]
 args = ["-p", ".mmdc.config.json"]
