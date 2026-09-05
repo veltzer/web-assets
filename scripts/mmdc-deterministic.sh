@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 # mmdc wrapper that makes PDF output reproducible.
 #
 # Chromium's Skia PDF writer stamps the wall-clock time into /CreationDate
@@ -11,10 +11,10 @@ set -euo pipefail
 out=""
 prev=""
 for arg in "$@"; do
-	case "$prev" in
-		-o|--output) out="$arg" ;;
+	case "${prev}" in
+	-o | --output) out="${arg}" ;;
 	esac
-	prev="$arg"
+	prev="${arg}"
 done
 
 # Locally mmdc comes from package.json; in CI rsconstruct installs it
@@ -24,12 +24,12 @@ if [ -x "node_modules/.bin/mmdc" ]; then
 	mmdc="node_modules/.bin/mmdc"
 fi
 
-"$mmdc" "$@"
+"${mmdc}" "$@"
 
-case "$out" in
-	*.pdf)
-		perl -0777 -pi -e \
-			"s{(/(?:Creation|Mod)Date \(D:)\d{14}[+-]\d{2}'\d{2}'}{\${1}19700101000000+00'00'}g" \
-			"$out"
-		;;
+case "${out}" in
+*.pdf)
+	perl -0777 -pi -e \
+		"s{(/(?:Creation|Mod)Date \(D:)\d{14}[+-]\d{2}'\d{2}'}{\${1}19700101000000+00'00'}g" \
+		"${out}"
+	;;
 esac
