@@ -1,5 +1,9 @@
 # rsconstruct build configuration for this repository.
 
+[build]
+# src_dirs entries name directories; "." (the whole tree) is a config error
+reject_dot_src_dirs = true
+
 # The mermaid processor's `command` override below points at the wrapper
 # script, so `tools install` checks for the script — not mmdc — and never
 # installs mermaid-cli on its own. Declare it here so `tools install-deps`
@@ -15,7 +19,7 @@ src_dirs = ["scripts"]
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
 [processor.taplo]
-src_dirs = ["."]
+src_files = [".rumdl.toml", "rsconstruct.toml"]
 
 # Render mermaid/**/*.mmd to docs/mermaid/**.{png,pdf,svg}. The outputs are
 # committed — this repo serves them as raw web assets — so they go under
