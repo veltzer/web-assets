@@ -17,14 +17,10 @@ for arg in "$@"; do
 	prev="${arg}"
 done
 
-# Locally mmdc comes from package.json; in CI rsconstruct installs it
-# globally. Prefer the repo-local one when present.
-mmdc="mmdc"
-if [ -x "node_modules/.bin/mmdc" ]; then
-	mmdc="node_modules/.bin/mmdc"
-fi
-
-"${mmdc}" "$@"
+# mmdc comes from package.json, installed into node_modules by
+# `rsconstruct tools install-deps`; rsconstruct puts node_modules/.bin on
+# PATH before it runs this script, so a plain invocation resolves it.
+mmdc "$@"
 
 case "${out}" in
 *.pdf)

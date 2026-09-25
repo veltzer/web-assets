@@ -6,11 +6,9 @@ reject_dot_src_dirs = true
 
 # The mermaid processor's `command` override below points at the wrapper
 # script, so `tools install` checks for the script — not mmdc — and never
-# installs mermaid-cli on its own. Declare it here so `tools install-deps`
-# installs it globally in CI (locally node_modules/.bin/mmdc from
-# package.json wins; see the wrapper).
-[dependencies]
-npm = ["@mermaid-js/mermaid-cli"]
+# installs mermaid-cli on its own. mmdc comes from package.json /
+# package-lock.json instead: `tools install-deps` runs `npm ci`, and
+# rsconstruct puts node_modules/.bin on PATH for the wrapper.
 
 # lint the shell scripts with shellcheck
 [processor.shellcheck]
