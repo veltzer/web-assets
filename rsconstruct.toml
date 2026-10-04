@@ -11,19 +11,19 @@ reject_dot_src_dirs = true
 # rsconstruct puts node_modules/.bin on PATH for the wrapper.
 
 # lint the shell scripts with shellcheck
-[processor.shellcheck]
+[processor.checker.shellcheck]
 src_dirs = ["scripts"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "rsconstruct.toml"]
 
 # Render mermaid/**/*.mmd to docs/mermaid/**.{png,pdf,svg}. The outputs are
 # committed — this repo serves them as raw web assets — so they go under
 # docs/, not out/. .mmdc.config.json is the puppeteer config every render
 # uses, so any change to it rebuilds all diagrams.
-[processor.mermaid]
+[processor.generator.mermaid]
 src_dirs = ["mermaid"]
 # Wrapper around mmdc that pins the PDF /CreationDate & /ModDate Chromium
 # stamps into the output — without it every render is binary-different.
@@ -34,20 +34,20 @@ args = ["-p", ".mmdc.config.json"]
 dep_inputs = [".mmdc.config.json"]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── markdown ────────────────────────────────────────────────────────────────
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_files = ["README.md"]
 
 # ─── json ────────────────────────────────────────────────────────────────────
 
-[processor.ijsonlint]
+[processor.checker.ijsonlint]
 src_files = [".mmdc.config.json", "package.json"]
 
 # ─── xml / svg ───────────────────────────────────────────────────────────────
 
-[processor.xmllint]
+[processor.checker.xmllint]
 src_dirs = ["docs"]
