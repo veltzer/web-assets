@@ -18,7 +18,7 @@ for arg in "$@"; do
 done
 
 # mmdc comes from package.json, installed into node_modules by
-# `rsconstruct tools install-deps`; rsconstruct puts node_modules/.bin on
+# `rsconstruct tool install-deps`; rsconstruct puts node_modules/.bin on
 # PATH before it runs this script, so a plain invocation resolves it.
 mmdc "$@"
 
