@@ -49,5 +49,5 @@ src_files = [".mmdc.config.json", "package.json"]
 
 # ─── xml / svg ───────────────────────────────────────────────────────────────
 
-[processor.checker.xmllint]
+[processor.checker.ixmllint]
 src_dirs = ["docs"]
