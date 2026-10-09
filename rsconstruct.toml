@@ -34,7 +34,7 @@ args = ["-p", ".mmdc.config.json"]
 dep_inputs = [".mmdc.config.json"]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.checker.actionlint]
+[processor.checker.iactionlint]
 src_dirs = [".github/workflows"]
 
 # ─── markdown ────────────────────────────────────────────────────────────────
