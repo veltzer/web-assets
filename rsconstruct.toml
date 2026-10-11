@@ -11,7 +11,7 @@ reject_dot_src_dirs = true
 # rsconstruct puts node_modules/.bin on PATH for the wrapper.
 
 # lint the shell scripts with shellcheck
-[processor.checker.shellcheck]
+[processor.checker.ishellcheck]
 src_dirs = ["scripts"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
